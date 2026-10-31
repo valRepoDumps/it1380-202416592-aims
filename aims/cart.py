@@ -25,3 +25,13 @@ class Cart:
 
     def total_cost(self):
         return sum(item.cost for item in self.items)
+
+    def print_cart(self):
+        if self.items:
+            print("Items in cart: ")
+            for item in self.items:
+                print(item)
+        else:
+            print("Cart is empty.")
+        print(f"Total cost: {self.total_cost():.2f} $")
+
