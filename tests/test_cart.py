@@ -10,6 +10,20 @@ class TestCart(unittest.TestCase):
             self.assertTrue(cart.add_dvd(DigitalVideoDisc(f"DVD {i}")))
         self.assertFalse(cart.add_dvd(DigitalVideoDisc("DVD {MAX_NUMBERS_ORDERED}")))
 
+    def make_cart_worth_100(self):
+        cart = Cart()
+        cart.add_dvd(DigitalVideoDisc("A", cost=100))
+        return cart
+
+    def test_discount_20_percent(self):
+        cart = self.make_cart_worth_100()
+        self.assertAlmostEqual(cart.total_cost_with_discount(20), 80)
+
+    def test_percent_over_100_raises(self):
+        cart = self.make_cart_worth_100()
+        with self.assertRaises(ValueError):
+            cart.total_cost_with_discount(150)
+
 
 if __name__ == "__main__":
     unittest.main()
