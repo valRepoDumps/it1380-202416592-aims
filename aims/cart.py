@@ -40,3 +40,11 @@ class Cart:
             print("Cart is empty.")
         print(f"Total cost: {self.total_cost():.2f} $")
 
+    def sort_by_title(self):
+        """Return the DVDs sorted by title, A to Z, ignoring case."""
+        return sorted(self.items, key=lambda dvd: dvd.title.casefold())
+
+    def sort_by_cost(self):
+        """Return the DVDs sorted by cost, cheapest first."""
+        return sorted(self.items, key=lambda dvd: dvd.cost)
+
