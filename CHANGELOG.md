@@ -11,3 +11,8 @@
 ### Fixed
 - Cart accepted the 21st DVD (#6)
 - Discount returned the discount amount instead of the discounted total
+## [1.0.1] - 2026-11-01
+### Added
+- Tests for search function
+### Fixed
+- make search case-insensitive. (#15)
