@@ -2,6 +2,7 @@ import unittest
 from aims.cart import Cart
 from aims.dvd import DigitalVideoDisc
 from aims.cart import MAX_NUMBERS_ORDERED
+from aims.search import search_by_title
 
 class TestCart(unittest.TestCase):
     def test_add_dvd_until_full(self):
@@ -23,6 +24,21 @@ class TestCart(unittest.TestCase):
         cart = self.make_cart_worth_100()
         with self.assertRaises(ValueError):
             cart.total_cost_with_discount(150)
+
+class TestSearchByTitle(unittest.TestCase):
+    def setUp(self):
+        self.cart = Cart()
+        self.cart.add_dvd(DigitalVideoDisc("The Lion King"))
+
+    def test_exact_case(self):
+        self.assertEqual(search_by_title(self.cart, "The Lion King").title, "The Lion King")
+
+    def test_ignores_case(self):
+        self.assertEqual(search_by_title(self.cart, "the lion king").title, "The Lion King")
+        self.assertEqual(search_by_title(self.cart, "THE LION KING").title, "The Lion King")
+
+    def test_not_found_returns_none(self):
+        self.assertIsNone(search_by_title(self.cart, "Aladdin"))
 
 
 if __name__ == "__main__":
