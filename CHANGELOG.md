@@ -15,4 +15,4 @@
 ### Added
 - Tests for search function
 ### Fixed
-- make search case-insensitive. 
+- make search case-insensitive. (#15)
